@@ -68,7 +68,8 @@ class RandomPromptGenerator(PromptGenerator):
             prompts = []
             for seed in seeds:
                 self._context.rand.seed(seed)
-                prompts.append(str(next(iter(gen))))
+                if gen:
+                    prompts.append(str(next(iter(gen))))
         else:
             prompts = [
                 str(p) for p in self._context.sample_prompts(template, num_images)
